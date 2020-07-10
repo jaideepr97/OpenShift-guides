@@ -1,5 +1,5 @@
 # OpenShift-guides
-## Performing a kaniko build on an Openshift cluster and pushing the image to a registry
+## Performing a kaniko build on an Openshift cluster and pushing the image to a registry (WIP)
 
 Pre-requisites:
 1. Access to an active OpenShift cluster
