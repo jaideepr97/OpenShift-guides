@@ -78,12 +78,15 @@ spec:
 6. Apply the pod to your OCP cluster
 ```shell
 oc apply -f <path/to/openshift-pod.yaml> 
-It should say "pod/kaniko created"
 ```
+It should say "pod/kaniko created"
+
 7. To check its status, run:
 ```shell
 oc get pods
-Should say:
+```
+It Should say:
+```shell
 NAME     READY   STATUS     RESTARTS   AGE
 kaniko   0/1     Init:0/1   0          50s
 ```
