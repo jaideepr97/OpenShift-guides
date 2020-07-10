@@ -17,7 +17,9 @@ oc create secret docker-registry regcred --docker-server=<your-registry-server> 
 - `<your-pword>` is your Docker password.
 - `<your-email>` is your Docker email.
 
-3. In your local file system, git clone your source code repository (for e.g git://github.com/openshift/golang-ex.git) in an empty directory. Download your corresponding dockerfile from its location and place it at the root of this direcotry (if it didn't already exist there). If a specific sub-directory within your cloned repo is meant to host the code that you are trying to build an image out of (as opposed to the entire cloned directory), then place the dockerfile at the root of that sub-directory. The directory containing your source code and Dockerfile now represents your build context. 
+3. In your local file system, git clone your source code repository (for e.g git://github.com/openshift/golang-ex.git ) in an empty directory. Download your corresponding dockerfile from its location and place it at the root of this direcotry (if it didn't already exist there). If a specific sub-directory within your cloned repo is meant to host the code that you are trying to build an image out of (as opposed to the entire cloned directory), then place the dockerfile at the root of that sub-directory. The directory containing your source code and Dockerfile now represents your build context.
+
+(SIDE NOTE: If using the dockerfile present in the above referenced repository, be sure to commend out the line that says "USER nobody" to avoid permission issues)
 
 4. Once your build context is ready, compress it into a tar.gz file like so:
 ```shell
