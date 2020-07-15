@@ -11,7 +11,7 @@ Pre-requisites:
 3. A valid Dockerfile for your target source directory (can exist anywhere, as long as a fully qualified URL is available)
 
 Steps followed:
-1. Login to your OCP cluster with ``` oc login --token=<token> --server=<server_url>``` and create your own project with ```oc new-project xyz```
+1. Login to your OCP cluster with ``` oc login --token=<token> --server=<server_url>``` and create your own project with <br> ```oc new-project xyz```
 
 2. a) (NOTE:  Follow this step if you want to push your image to an external registry) Create this Secret, naming it regcred:
 ```shell
