@@ -1,5 +1,5 @@
 # OpenShift-guides
-## Performing a kaniko build on an Openshift cluster and pushing the image to a registry (WIP)
+## Performing a kaniko build on an Openshift cluster and pushing the image to a registry 
 
 Building images from a standard Dockerfile typically relies upon interactive access to a Docker daemon, which requires root access on your machine to run. This can make it difficult to build container images in environments that can’t easily or securely expose their Docker daemons, such as Kubernetes clusters 
 
