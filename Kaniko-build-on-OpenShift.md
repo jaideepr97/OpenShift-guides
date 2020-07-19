@@ -151,3 +151,5 @@ oc describe pod kaniko
 ```
 12. After a while, you should be able to see your pushed image reflecting in your external/internal registry
 13. The pod can be deleted if needed using, ```oc delete pod kaniko```
+
+P.S : All the above described commands would also work with ```kubectl``` in place of ```oc``` regardless of whether you're working with a kubernetes cluster or an openshift cluster
