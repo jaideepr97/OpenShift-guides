@@ -1,0 +1,504 @@
+Name:         buildpack-nodejs-buildrun-zlrk9-pod-n87n9
+Namespace:    shipwright-test
+Priority:     0
+Node:         ip-10-0-167-218.us-east-2.compute.internal/10.0.167.218
+Start Time:   Wed, 19 Aug 2020 11:38:27 -0400
+Labels:       app.kubernetes.io/managed-by=tekton-pipelines
+              build.build.dev/generation=1
+              build.build.dev/name=buildpack-nodejs-build
+              buildrun.build.dev/generation=1
+              buildrun.build.dev/name=buildpack-nodejs-buildrun
+              tekton.dev/taskRun=buildpack-nodejs-buildrun-zlrk9
+Annotations:  k8s.v1.cni.cncf.io/network-status:
+                [{
+                    "name": "",
+                    "interface": "eth0",
+                    "ips": [
+                        "10.131.0.20"
+                    ],
+                    "default": true,
+                    "dns": {}
+                }]
+              k8s.v1.cni.cncf.io/networks-status:
+                [{
+                    "name": "",
+                    "interface": "eth0",
+                    "ips": [
+                        "10.131.0.20"
+                    ],
+                    "default": true,
+                    "dns": {}
+                }]
+              openshift.io/scc: privileged
+              pipeline.tekton.dev/release: devel
+              tekton.dev/ready: READY
+Status:       Failed
+IP:           10.131.0.20
+IPs:
+  IP:           10.131.0.20
+Controlled By:  TaskRun/buildpack-nodejs-buildrun-zlrk9
+Init Containers:
+  credential-initializer:
+    Container ID:  cri-o://cbbf9839678cccdd6b186dd03ef36ec99ec45400af3c8c91e8497d97091aed9e
+    Image:         registry.redhat.io/openshift-pipelines-tech-preview/pipelines-creds-init-rhel8@sha256:f5cd703289d2df8bc8ae822b91491b0f47427a068456fcaff6cdd30bf34e4aea
+    Image ID:      registry.redhat.io/openshift-pipelines-tech-preview/pipelines-creds-init-rhel8@sha256:f5cd703289d2df8bc8ae822b91491b0f47427a068456fcaff6cdd30bf34e4aea
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /ko-app/creds-init
+    Args:
+      -docker-cfg=pipeline-dockercfg-2pt29
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Wed, 19 Aug 2020 11:38:32 -0400
+      Finished:     Wed, 19 Aug 2020 11:38:32 -0400
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      HOME:  /tekton/home
+    Mounts:
+      /tekton/creds-secrets/pipeline-dockercfg-2pt29 from tekton-internal-secret-volume-pipeline-dockercfg-2pt29-zcs27 (rw)
+      /tekton/home from tekton-internal-home (rw)
+      /tekton/results from tekton-internal-results (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from pipeline-token-5ckl7 (ro)
+      /workspace from tekton-internal-workspace (rw)
+  place-tools:
+    Container ID:  cri-o://e5f764f5c93ac366e139ec27f1c5acb4c0a13841d0e2b57478b8170348e5c285
+    Image:         registry.redhat.io/openshift-pipelines-tech-preview/pipelines-entrypoint-rhel8@sha256:09e65d4ebdca39769a9e6dadb57f9a51ec6ac3cd6b0b1261d37183e00d5681c0
+    Image ID:      registry.redhat.io/openshift-pipelines-tech-preview/pipelines-entrypoint-rhel8@sha256:09e65d4ebdca39769a9e6dadb57f9a51ec6ac3cd6b0b1261d37183e00d5681c0
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      cp
+      /ko-app/entrypoint
+      /tekton/tools/entrypoint
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Wed, 19 Aug 2020 11:38:39 -0400
+      Finished:     Wed, 19 Aug 2020 11:38:39 -0400
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /tekton/tools from tekton-internal-tools (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from pipeline-token-5ckl7 (ro)
+Containers:
+  step-create-dir-image-xpnmj:
+    Container ID:  cri-o://c4f691d029ce5386151bbea850231eadec0d19eca8efdb6bfc49f7ab6ceb1e0f
+    Image:         registry.access.redhat.com/ubi8/ubi-minimal:latest
+    Image ID:      registry.access.redhat.com/ubi8/ubi-minimal@sha256:3364fa3bd7a5aea2932e352a446ec7f46378885f6a8f03847acc64dd100aa4cc
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /tekton/tools/entrypoint
+    Args:
+      -wait_file
+      /tekton/downward/ready
+      -wait_file_content
+      -post_file
+      /tekton/tools/0
+      -termination_path
+      /tekton/termination
+      -entrypoint
+      mkdir
+      --
+      -p
+      /workspace/output/image
+    State:          Terminated
+      Reason:       Completed
+      Message:      [{"key":"StartedAt","value":"2020-08-19T15:40:06Z","resourceRef":{}}]
+      Exit Code:    0
+      Started:      Wed, 19 Aug 2020 11:38:47 -0400
+      Finished:     Wed, 19 Aug 2020 11:40:06 -0400
+    Ready:          False
+    Restart Count:  0
+    Requests:
+      cpu:                0
+      ephemeral-storage:  0
+      memory:             0
+    Environment:
+      HOME:  /tekton/home
+    Mounts:
+      /tekton/downward from tekton-internal-downward (rw)
+      /tekton/home from tekton-internal-home (rw)
+      /tekton/results from tekton-internal-results (rw)
+      /tekton/tools from tekton-internal-tools (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from pipeline-token-5ckl7 (ro)
+      /workspace from tekton-internal-workspace (rw)
+  step-git-source-source-x99nm:
+    Container ID:  cri-o://5da2a089a8f3655e92c7ca43a99b545fc9d6f86b69b2a1fa312f6fa6ac318882
+    Image:         registry.redhat.io/openshift-pipelines-tech-preview/pipelines-git-init-rhel8@sha256:bb744988e87cc556873098885ee1a7fc1ef7b6c1ea24e3a4d7a5e518edb22838
+    Image ID:      registry.redhat.io/openshift-pipelines-tech-preview/pipelines-git-init-rhel8@sha256:bb744988e87cc556873098885ee1a7fc1ef7b6c1ea24e3a4d7a5e518edb22838
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /tekton/tools/entrypoint
+    Args:
+      -wait_file
+      /tekton/tools/0
+      -post_file
+      /tekton/tools/1
+      -termination_path
+      /tekton/termination
+      -entrypoint
+      /ko-app/git-init
+      --
+      -url
+      https://github.com/sclorg/nodejs-ex
+      -revision
+      master
+      -path
+      /workspace/source
+    State:          Terminated
+      Reason:       Completed
+      Message:      [{"key":"commit","value":"f1cd67edc84cfbcfa8f5d0fc7633b4dbe33f041a","resourceRef":{"name":"source"}},{"key":"StartedAt","value":"2020-08-19T15:40:07Z","resourceRef":{}}]
+      Exit Code:    0
+      Started:      Wed, 19 Aug 2020 11:39:02 -0400
+      Finished:     Wed, 19 Aug 2020 11:40:08 -0400
+    Ready:          False
+    Restart Count:  0
+    Requests:
+      cpu:                0
+      ephemeral-storage:  0
+      memory:             0
+    Environment:
+      HOME:                  /tekton/home
+      TEKTON_RESOURCE_NAME:  source
+    Mounts:
+      /tekton/home from tekton-internal-home (rw)
+      /tekton/results from tekton-internal-results (rw)
+      /tekton/tools from tekton-internal-tools (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from pipeline-token-5ckl7 (ro)
+      /workspace from tekton-internal-workspace (rw)
+  step-step-prepare:
+    Container ID:  cri-o://cbbaf46e0ae981d1da6bf7f2434d5d27f23e42b7f61e02d81ef7b1beccc01167
+    Image:         gcr.io/paketo-buildpacks/builder:latest
+    Image ID:      gcr.io/paketo-buildpacks/builder@sha256:d2aa288ecf6f2a5e1b76f4e2b5aa660d9a53fae45687f1a66492f63bdbee3b1a
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /tekton/tools/entrypoint
+    Args:
+      -wait_file
+      /tekton/tools/1
+      -post_file
+      /tekton/tools/2
+      -termination_path
+      /tekton/termination
+      -entrypoint
+      /bin/bash
+      --
+      -c
+      chown -R "1000:1000" "/workspace/source" && chown -R "1000:1000" "/tekton/home"
+      
+    State:          Terminated
+      Reason:       Completed
+      Message:      [{"key":"StartedAt","value":"2020-08-19T15:40:08Z","resourceRef":{}}]
+      Exit Code:    0
+      Started:      Wed, 19 Aug 2020 11:39:56 -0400
+      Finished:     Wed, 19 Aug 2020 11:40:08 -0400
+    Ready:          False
+    Restart Count:  0
+    Requests:
+      cpu:                0
+      ephemeral-storage:  0
+      memory:             0
+    Environment:
+      HOME:  /tekton/home
+    Mounts:
+      /tekton/home from tekton-internal-home (rw)
+      /tekton/results from tekton-internal-results (rw)
+      /tekton/tools from tekton-internal-tools (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from pipeline-token-5ckl7 (ro)
+      /workspace from tekton-internal-workspace (rw)
+  step-step-detect:
+    Container ID:  cri-o://d2480ff14b9664903f8f9543c66ee0e078c46871e2db913afc6f2cd06447eb03
+    Image:         gcr.io/paketo-buildpacks/builder:latest
+    Image ID:      gcr.io/paketo-buildpacks/builder@sha256:d2aa288ecf6f2a5e1b76f4e2b5aa660d9a53fae45687f1a66492f63bdbee3b1a
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /tekton/tools/entrypoint
+    Args:
+      -wait_file
+      /tekton/tools/2
+      -post_file
+      /tekton/tools/3
+      -termination_path
+      /tekton/termination
+      -entrypoint
+      /cnb/lifecycle/detector
+      --
+      -app=/workspace/source/.
+      -group=/layers/group.toml
+      -plan=/layers/plan.toml
+    State:          Terminated
+      Reason:       Completed
+      Message:      [{"key":"StartedAt","value":"2020-08-19T15:40:09Z","resourceRef":{}}]
+      Exit Code:    0
+      Started:      Wed, 19 Aug 2020 11:39:57 -0400
+      Finished:     Wed, 19 Aug 2020 11:40:09 -0400
+    Ready:          False
+    Restart Count:  0
+    Requests:
+      cpu:                0
+      ephemeral-storage:  0
+      memory:             0
+    Environment:
+      HOME:  /tekton/home
+    Mounts:
+      /layers from layers-dir (rw)
+      /tekton/home from tekton-internal-home (rw)
+      /tekton/results from tekton-internal-results (rw)
+      /tekton/tools from tekton-internal-tools (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from pipeline-token-5ckl7 (ro)
+      /workspace from tekton-internal-workspace (rw)
+  step-step-restore:
+    Container ID:  cri-o://13c0bfebc9908897a071593c044a595d47e8fb613da448df467d6e7c2fa7b68d
+    Image:         gcr.io/paketo-buildpacks/builder:latest
+    Image ID:      gcr.io/paketo-buildpacks/builder@sha256:d2aa288ecf6f2a5e1b76f4e2b5aa660d9a53fae45687f1a66492f63bdbee3b1a
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /tekton/tools/entrypoint
+    Args:
+      -wait_file
+      /tekton/tools/3
+      -post_file
+      /tekton/tools/4
+      -termination_path
+      /tekton/termination
+      -entrypoint
+      /cnb/lifecycle/restorer
+      --
+      -layers=/layers
+      -cache-dir=/cache
+      -group=/layers/group.toml
+    State:          Terminated
+      Reason:       Completed
+      Message:      [{"key":"StartedAt","value":"2020-08-19T15:40:10Z","resourceRef":{}}]
+      Exit Code:    0
+      Started:      Wed, 19 Aug 2020 11:39:57 -0400
+      Finished:     Wed, 19 Aug 2020 11:40:10 -0400
+    Ready:          False
+    Restart Count:  0
+    Requests:
+      cpu:                0
+      ephemeral-storage:  0
+      memory:             0
+    Environment:
+      HOME:  /tekton/home
+    Mounts:
+      /cache from cache-dir (rw)
+      /layers from layers-dir (rw)
+      /tekton/home from tekton-internal-home (rw)
+      /tekton/results from tekton-internal-results (rw)
+      /tekton/tools from tekton-internal-tools (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from pipeline-token-5ckl7 (ro)
+      /workspace from tekton-internal-workspace (rw)
+  step-step-build:
+    Container ID:  cri-o://2202da33a9bcdd0b382ab4d9ccd066b8e3304ffd54d745132a85b53f93c5186d
+    Image:         gcr.io/paketo-buildpacks/builder:latest
+    Image ID:      gcr.io/paketo-buildpacks/builder@sha256:d2aa288ecf6f2a5e1b76f4e2b5aa660d9a53fae45687f1a66492f63bdbee3b1a
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /tekton/tools/entrypoint
+    Args:
+      -wait_file
+      /tekton/tools/4
+      -post_file
+      /tekton/tools/5
+      -termination_path
+      /tekton/termination
+      -entrypoint
+      /cnb/lifecycle/builder
+      --
+      -app=/workspace/source/.
+      -layers=/layers
+      -group=/layers/group.toml
+      -plan=/layers/plan.toml
+    State:          Terminated
+      Reason:       Completed
+      Message:      [{"key":"StartedAt","value":"2020-08-19T15:40:10Z","resourceRef":{}}]
+      Exit Code:    0
+      Started:      Wed, 19 Aug 2020 11:39:58 -0400
+      Finished:     Wed, 19 Aug 2020 11:40:16 -0400
+    Ready:          False
+    Restart Count:  0
+    Requests:
+      cpu:                0
+      ephemeral-storage:  0
+      memory:             0
+    Environment:
+      HOME:  /tekton/home
+    Mounts:
+      /layers from layers-dir (rw)
+      /tekton/home from tekton-internal-home (rw)
+      /tekton/results from tekton-internal-results (rw)
+      /tekton/tools from tekton-internal-tools (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from pipeline-token-5ckl7 (ro)
+      /workspace from tekton-internal-workspace (rw)
+  step-step-export:
+    Container ID:  cri-o://5ab99c799d91a443b4cfcf4ac6433cbe1e9fe4525af36dff8a76f0ea76dbe9fe
+    Image:         gcr.io/paketo-buildpacks/builder:latest
+    Image ID:      gcr.io/paketo-buildpacks/builder@sha256:d2aa288ecf6f2a5e1b76f4e2b5aa660d9a53fae45687f1a66492f63bdbee3b1a
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /tekton/tools/entrypoint
+    Args:
+      -wait_file
+      /tekton/tools/5
+      -post_file
+      /tekton/tools/6
+      -termination_path
+      /tekton/termination
+      -entrypoint
+      /cnb/lifecycle/exporter
+      --
+      -app=/workspace/source/.
+      -layers=/layers
+      -cache-dir=/cache
+      -group=/layers/group.toml
+      image-registry.openshift-image-registry.svc:5000/shipwright-test/buildpacks
+    State:          Terminated
+      Reason:       Error
+      Message:      [{"key":"StartedAt","value":"2020-08-19T15:40:16Z","resourceRef":{}}]
+      Exit Code:    246
+      Started:      Wed, 19 Aug 2020 11:39:59 -0400
+      Finished:     Wed, 19 Aug 2020 11:40:20 -0400
+    Ready:          False
+    Restart Count:  0
+    Requests:
+      cpu:                0
+      ephemeral-storage:  0
+      memory:             0
+    Environment:
+      HOME:  /tekton/home
+    Mounts:
+      /cache from cache-dir (rw)
+      /layers from layers-dir (rw)
+      /tekton/home from tekton-internal-home (rw)
+      /tekton/results from tekton-internal-results (rw)
+      /tekton/tools from tekton-internal-tools (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from pipeline-token-5ckl7 (ro)
+      /workspace from tekton-internal-workspace (rw)
+  step-image-digest-exporter-7c8lc:
+    Container ID:  cri-o://71ac1031829acf82c44ba7d1aa66e7c68da8273706bdb1861a39251feb29394b
+    Image:         registry.redhat.io/openshift-pipelines-tech-preview/pipelines-imagedigestexporter-rhel8@sha256:77f27990bbc1bdc7fb1fe0bb997c7c1f715e43aa4ba361521b20466614a714f9
+    Image ID:      registry.redhat.io/openshift-pipelines-tech-preview/pipelines-imagedigestexporter-rhel8@sha256:77f27990bbc1bdc7fb1fe0bb997c7c1f715e43aa4ba361521b20466614a714f9
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /tekton/tools/entrypoint
+    Args:
+      -wait_file
+      /tekton/tools/6
+      -post_file
+      /tekton/tools/7
+      -termination_path
+      /tekton/termination
+      -entrypoint
+      /ko-app/imagedigestexporter
+      --
+      -images
+      [{"name":"image","type":"image","url":"image-registry.openshift-image-registry.svc:5000/shipwright-test/buildpacks","digest":"","OutputImageDir":"/workspace/output/image"}]
+    State:          Terminated
+      Reason:       Error
+      Exit Code:    1
+      Started:      Wed, 19 Aug 2020 11:40:04 -0400
+      Finished:     Wed, 19 Aug 2020 11:40:20 -0400
+    Ready:          False
+    Restart Count:  0
+    Requests:
+      cpu:                0
+      ephemeral-storage:  0
+      memory:             0
+    Environment:
+      HOME:  /tekton/home
+    Mounts:
+      /tekton/home from tekton-internal-home (rw)
+      /tekton/results from tekton-internal-results (rw)
+      /tekton/tools from tekton-internal-tools (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from pipeline-token-5ckl7 (ro)
+      /workspace from tekton-internal-workspace (rw)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             False 
+  ContainersReady   False 
+  PodScheduled      True 
+Volumes:
+  tekton-internal-workspace:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  tekton-internal-home:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  tekton-internal-results:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  tekton-internal-secret-volume-pipeline-dockercfg-2pt29-zcs27:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  pipeline-dockercfg-2pt29
+    Optional:    false
+  tekton-internal-tools:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  tekton-internal-downward:
+    Type:  DownwardAPI (a volume populated by information about the pod)
+    Items:
+      metadata.annotations['tekton.dev/ready'] -> ready
+  layers-dir:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  cache-dir:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  pipeline-token-5ckl7:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  pipeline-token-5ckl7
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type    Reason          Age        From                                                 Message
+  ----    ------          ----       ----                                                 -------
+  Normal  Scheduled       <unknown>                                                       Successfully assigned shipwright-test/buildpack-nodejs-buildrun-zlrk9-pod-n87n9 to ip-10-0-167-218.us-east-2.compute.internal
+  Normal  AddedInterface  3m2s       multus                                               Add eth0 [10.131.0.20/23]
+  Normal  Pulling         3m1s       kubelet, ip-10-0-167-218.us-east-2.compute.internal  Pulling image "registry.redhat.io/openshift-pipelines-tech-preview/pipelines-creds-init-rhel8@sha256:f5cd703289d2df8bc8ae822b91491b0f47427a068456fcaff6cdd30bf34e4aea"
+  Normal  Pulled          2m58s      kubelet, ip-10-0-167-218.us-east-2.compute.internal  Successfully pulled image "registry.redhat.io/openshift-pipelines-tech-preview/pipelines-creds-init-rhel8@sha256:f5cd703289d2df8bc8ae822b91491b0f47427a068456fcaff6cdd30bf34e4aea" in 3.539888754s
+  Normal  Created         2m58s      kubelet, ip-10-0-167-218.us-east-2.compute.internal  Created container credential-initializer
+  Normal  Started         2m57s      kubelet, ip-10-0-167-218.us-east-2.compute.internal  Started container credential-initializer
+  Normal  Pulling         2m56s      kubelet, ip-10-0-167-218.us-east-2.compute.internal  Pulling image "registry.redhat.io/openshift-pipelines-tech-preview/pipelines-entrypoint-rhel8@sha256:09e65d4ebdca39769a9e6dadb57f9a51ec6ac3cd6b0b1261d37183e00d5681c0"
+  Normal  Pulled          2m51s      kubelet, ip-10-0-167-218.us-east-2.compute.internal  Successfully pulled image "registry.redhat.io/openshift-pipelines-tech-preview/pipelines-entrypoint-rhel8@sha256:09e65d4ebdca39769a9e6dadb57f9a51ec6ac3cd6b0b1261d37183e00d5681c0" in 5.100473712s
+  Normal  Created         2m51s      kubelet, ip-10-0-167-218.us-east-2.compute.internal  Created container place-tools
+  Normal  Started         2m51s      kubelet, ip-10-0-167-218.us-east-2.compute.internal  Started container place-tools
+  Normal  Pulling         2m50s      kubelet, ip-10-0-167-218.us-east-2.compute.internal  Pulling image "registry.access.redhat.com/ubi8/ubi-minimal:latest"
+  Normal  Pulled          2m43s      kubelet, ip-10-0-167-218.us-east-2.compute.internal  Successfully pulled image "registry.access.redhat.com/ubi8/ubi-minimal:latest" in 7.351780113s
+  Normal  Created         2m43s      kubelet, ip-10-0-167-218.us-east-2.compute.internal  Created container step-create-dir-image-xpnmj
+  Normal  Pulling         2m43s      kubelet, ip-10-0-167-218.us-east-2.compute.internal  Pulling image "registry.redhat.io/openshift-pipelines-tech-preview/pipelines-git-init-rhel8@sha256:bb744988e87cc556873098885ee1a7fc1ef7b6c1ea24e3a4d7a5e518edb22838"
+  Normal  Started         2m43s      kubelet, ip-10-0-167-218.us-east-2.compute.internal  Started container step-create-dir-image-xpnmj
+  Normal  Pulled          2m28s      kubelet, ip-10-0-167-218.us-east-2.compute.internal  Successfully pulled image "registry.redhat.io/openshift-pipelines-tech-preview/pipelines-git-init-rhel8@sha256:bb744988e87cc556873098885ee1a7fc1ef7b6c1ea24e3a4d7a5e518edb22838" in 14.830581998s
+  Normal  Created         2m28s      kubelet, ip-10-0-167-218.us-east-2.compute.internal  Created container step-git-source-source-x99nm
+  Normal  Started         2m28s      kubelet, ip-10-0-167-218.us-east-2.compute.internal  Started container step-git-source-source-x99nm
+  Normal  Pulling         2m28s      kubelet, ip-10-0-167-218.us-east-2.compute.internal  Pulling image "gcr.io/paketo-buildpacks/builder:latest"
+  Normal  Pulled          94s        kubelet, ip-10-0-167-218.us-east-2.compute.internal  Successfully pulled image "gcr.io/paketo-buildpacks/builder:latest" in 53.432484003s
+  Normal  Created         94s        kubelet, ip-10-0-167-218.us-east-2.compute.internal  Created container step-step-prepare
+  Normal  Started         94s        kubelet, ip-10-0-167-218.us-east-2.compute.internal  Started container step-step-prepare
+  Normal  Pulling         94s        kubelet, ip-10-0-167-218.us-east-2.compute.internal  Pulling image "gcr.io/paketo-buildpacks/builder:latest"
+  Normal  Pulled          93s        kubelet, ip-10-0-167-218.us-east-2.compute.internal  Successfully pulled image "gcr.io/paketo-buildpacks/builder:latest" in 509.033049ms
+  Normal  Created         93s        kubelet, ip-10-0-167-218.us-east-2.compute.internal  Created container step-step-detect
+  Normal  Started         93s        kubelet, ip-10-0-167-218.us-east-2.compute.internal  Started container step-step-detect
+  Normal  Pulling         93s        kubelet, ip-10-0-167-218.us-east-2.compute.internal  Pulling image "gcr.io/paketo-buildpacks/builder:latest"
