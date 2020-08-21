@@ -4,7 +4,7 @@
 Steps to follow:
 - Install build-api operator on your openshift cluster from the Operator Hub
 - ```kubectl apply  -f https://raw.githubusercontent.com/redhat-developer/build/master/samples/buildstrategy/buildpacks-v3/buildstrategy_buildpacks-v3_cr.yaml```
-  a) (NOTE:  Follow this step if you want to push your image to an external registry) Create this Secret, naming it regcred:
+- a) (NOTE:  Follow this step if you want to push your image to an external registry) Create this Secret, naming it regcred:
 ```shell
 oc create secret docker-registry regcred --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-pword> --docker-email=<your-email>
 ```
@@ -14,7 +14,7 @@ oc create secret docker-registry regcred --docker-server=<your-registry-server> 
 - `<your-email>` is your Docker email.
 
 
-  b) (NOTE: Follow this step if you want to push your image to an internal registry through a pod on a cluster using a service account (for example)) : Try to acquire the login credentials for your desired service account (for e.g. Builder) through your cluster's console. From the list of available secrets in your namespace, pick a builder-dockercfg secret, and expose the base64 credentials (The reveal values button on OCP console). Locate the URL for your target image registry, and copy the "auth" token. Use it to prepare a new config.json file that would look something like this:
+- b) (NOTE: Follow this step if you want to push your image to an internal registry through a pod on a cluster using a service account (for example)) : Try to acquire the login credentials for your desired service account (for e.g. Builder) through your cluster's console. From the list of available secrets in your namespace, pick a builder-dockercfg secret, and expose the base64 credentials (The reveal values button on OCP console). Locate the URL for your target image registry, and copy the "auth" token. Use it to prepare a new config.json file that would look something like this:
 
 ```
 {"auths": {
