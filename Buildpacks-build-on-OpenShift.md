@@ -32,8 +32,11 @@ Once your config.json file is ready, create this secret, naming it regcred:
 ```shell
 oc create secret generic regcred --from-file=.dockerconfigjson=<path/to/config.json>  --type=kubernetes.io/dockerconfigjson
 ```
+Once your secret is created, run:
 - ```kubectl apply -f build.yaml ```
 - ```kubectl apply -f buildRun.yaml```
+
+At the end of this, you should be able to see your build pod executing on the cluster. After the builder pod has reached completed state, you should be seeing your created image pushed to the registry you specified earlier 
 
 **build.yaml**:
 ```
